@@ -1,0 +1,89 @@
+# static
+class Car{
+    public static function showColor(){
+        echo "Red .<br>";
+    }
+}
+// $car = new Car();
+Car:: showColor();                  // class:: function(); 可以不透過class直接呼叫static方法
+
+protected function f(){...}         // 只有繼承的可以看得到(僅對後代繼承開放)
+// SHA256雜湊
+
+
+# 陣列轉成物件(scoreList.php)
+$scoreList = Array(85,93,26,87,71);     // = [85,93,...];
+$viewModel = [];
+foreach($scoreList as $score){
+    $student = (object) ["score" => $score, "style" => "pass"];
+    if($score <60){
+        $student->style = "fail";
+    }
+    $viewModel[] = $student;
+}
+
+# Ragular Expression 規則式
+\d      [0-9]
+\w      [0-9A-Za-z]
+?       0或1個 {0,1}
++       至少一個{1,}
+*       {0,}
+<input type="text" name="text" pattern="(0\d{1,2}-)?\d{7,8}" required> <br>        <!-- pattern 規則式、required 必須有回傳值 -->
+
+javascript : / Regualer Expression /;        ->  在/ / 裡放規則式
+
+
+
+# XML       (XML google： dtd xsd xslt)     (一個系統用xsd包裝，兩個xsd用xslt轉譯，包成一個channal，channal用port連接)
+$xmlString = ...
+$doc = new DOMDocument();  
+$doc->loadXML($xmlString);                     // 使用 DOMDocument(字串)的loadXML
+// $doc->load("employees.xml");                // load(檔名) -> 呈現的時候右鍵檢查原始碼
+header("Content-type: text/xml", true);
+$doc->save("desktop/employees_bak.xml");       // 可以輸出成檔案
+echo $doc->c14n();                             // c14n()   轉換成字串
+
+- createElement 生產方法
+$doc = new DOMDocument("1.0", "utf-8");
+$root = $doc->createElement("HTML");            // createElement 生產方法
+$root2 = $doc->createElement("CSS");
+$doc->appendChild($root);                       // 根節點
+$root->appendChild($root2);                     // 根節點掛子結點
+echo htmlspecialchars($doc->c14n());            // <HTML><CSS></CSS></HTML>
+
+- XPath     // 使用 XPath找出特定相同標籤的值
+$doc = new DOMDocument();
+$doc->Load('employees.xml');
+$xpath = new DOMXPath($doc);                                   // 使用XPath物件來呼叫query方法
+$entries = $xpath->query("/employees/employee/@EmpType");      // <employees><employee EmpType=""> -> @屬性
+foreach ($entries as $entry) 
+{
+   echo "結果：" . $entry->nodeValue . "<br>";                  // nodeValue 節點的值
+}
+
+// 找出標籤名稱為 employee 的元素
+$employeeNodeList = $doc->getElementsByTagName("employee");
+foreach ($employeeNodeList as $node)
+{
+	echo $node->getAttribute("EmpType") .  "<br>";			// setAttribute 設立屬性
+
+	for($i=0;$i<$node->childNodes->length;$i++){			// $node->childNodes[$i]  指向節點個子節點
+		echo $node->childNodes[$i]->nodeName . " : " .
+		$node->childNodes[$i]->nodeValue .  "<br>";
+	}
+
+}
+
+
+- 修改、新增、刪除
+$doc = new DOMDocument();
+$doc->preserveWhiteSpace=false;
+$doc->loadXML($xmlString);
+
+$root = $doc->documentElement;                               // 讓$root為文件元素
+$root->setAttribute("id", "001");                            // setAttribute(新增屬性名稱,內容)
+$entries = $xpath->query("/employees/@id");    // 找到屬性名稱   // 從1開始
+$entries[0]->nodeValue = "002";                                     // ndoeValue(內容)   修改值
+
+$entries = $xpath->query("/employees/employee[1]/firstName"); 
+$entries[0]->parentNode->removeChild($entries[0]);                  // 刪除
