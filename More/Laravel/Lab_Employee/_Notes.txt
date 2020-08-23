@@ -1,3 +1,2 @@
-¥»½Ò°ó½m²ß¹ÏÀÉ·½¦Û Christophe Coenraets ¥ı¥Íªº jQuery Mobile ¥Ü½d½d¨Ò¡A
-ºô§}: http://coenraets.org/blog/2011/11/jquery-mobile-getting-started-application/
-
+æœ¬èª²å ‚ç·´ç¿’åœ–æª”æºè‡ª Christophe Coenraets å…ˆç”Ÿçš„ jQuery Mobile ç¤ºç¯„ç¯„ä¾‹ï¼Œ
+ç¶²å€: http://coenraets.org/blog/2011/11/jquery-mobile-getting-started-application/

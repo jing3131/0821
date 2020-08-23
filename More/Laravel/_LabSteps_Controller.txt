@@ -1,4 +1,4 @@
-Lab: Laravel 路由與控制器使用練習
+﻿Lab: Laravel 路由與控制器使用練習
 
 
 1.  建立開發環境
@@ -19,7 +19,6 @@ Lab: Laravel 路由與控制器使用練習
 
 
 
-
 2.  基本路由與工作分派
 
 
@@ -30,6 +29,8 @@ Route::get('/lab', "LabController@index");
 <Note>
 關於第二個參數，請留意 @ 符號的前後分別是指什麼?
 
+composer install
+
 
 2.2 Ctrl + ` 開啟終端機視窗，輸入下列指令以建立控制器:
 php artisan make:controller LabController
@@ -38,6 +39,8 @@ php artisan make:controller LabController
 2.3 編輯 app\Http\Controllers\LabController.php
     加入下列函式到控制器類別:
 
+
+    // 放在class裡面
     function index() {
         return "Lab Controller index action";
     }

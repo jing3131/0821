@@ -1,0 +1,37 @@
+# Laravel
+
+1. 在資料夾下 cmd(git bash here)： laravel new workout
+2. routes\wep.php ：
+	放入 Route::get('/lab', "LabController@index");
+	(位於/網址(可以任意寫),哪個Controller@方法)
+
+3. 執行 composer install
+4. 新建Controller
+在VScode執行終端機： php artisan make:controller LabController
+5. 在 app\Http\Controllers\LabController.php
+	在class里新建function
+
+6. 終端機啟動伺服器： php artisan serve    (http://127.0.0.1:8000/資料夾)
+7. 在 resources\views新增資料夾，資料夾放輸出畫面
+可在Controller方法呼叫(return view("資料夾.檔案名稱");)
+
+return view('lab/form');
+return redirect('lab/form');                // redirect 重新導向
+
+
+8. 可直接回傳xml標籤
+$content = "<xml>...</xml>";
+return rsponse($content, 200,					// 200 成功時的回應碼
+	[
+		'Content-Type' => 'application/xml'
+	]);
+
+	
+9. 終端機： php artisan make:controller DataController --resource
+可自動生成 "增查修刪..."方法
+	
+
+dd($id);                       				 // Dumper->dump()  可以印出內容(自代背景顏色、字體大小)
+function param(Request $request){ 			 // Request 在 Laravel 中要取得 HTTP 的請求資訊
+dd($request->all());  }						 // 將所有傳進網址裡的參數用陣列array顯示	= dd($request->input());
+dd($request->input('firstName'));			 // 指定輸出哪個區塊
