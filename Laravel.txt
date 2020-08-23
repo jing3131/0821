@@ -29,6 +29,9 @@ return rsponse($content, 200,					// 200 成功時的回應碼
 	
 9. 終端機： php artisan make:controller DataController --resource
 可自動生成 "增查修刪..."方法
+// Route:: resource('data','DataController');
+Route:: resource('data','DataController',['Only' => ['index', 'show']]);        // 指定讓此路由僅處理一部分的行為
+
 	
 
 dd($id);                       				 // Dumper->dump()  可以印出內容(自代背景顏色、字體大小)
